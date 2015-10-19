@@ -1,0 +1,24 @@
+#include "hiredis/hiredis.h"
+#include <iostream>
+
+#define REDIS_HOST "pub-redis-13387.us-east-1-4.6.ec2.redislabs.com"
+#define REDIS_PORT 13387
+
+void connectToRedis ( redisContext* & rcc ){
+
+  rcc = redisConnectWithTimeout(REDIS_HOST, REDIS_PORT, {1,0});
+  if (rcc == NULL || rcc->err) {
+    if (rcc) {
+      printf("Redis Connection error: %s\n", rcc->errstr);
+      redisFree(rcc);
+    } else {
+      printf("Redis Connection error: can't allocate redis context\n");
+    }
+  }
+}
+
+int main (int argc, char **argv) {
+  redisContext *rcc;
+  connectToRedis (rcc);
+
+}

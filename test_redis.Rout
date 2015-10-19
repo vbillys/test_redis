@@ -1,0 +1,42 @@
+
+R version 3.2.1 (2015-06-18) -- "World-Famous Astronaut"
+Copyright (C) 2015 The R Foundation for Statistical Computing
+Platform: x86_64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+Revolution R Open 3.2.1
+Default CRAN mirror snapshot taken on 2015-07-01
+The enhanced R distribution from Revolution Analytics
+Visit mran.revolutionanalytics.com/open for information
+about additional features.
+
+> library("rredis")
+> redisConnect(host = "pub-redis-13387.us-east-1-4.6.ec2.redislabs.com", port = 13387)
+> #redisSubscribe("yaya")
+> repeat {
++   print("Inside Loop")
++   print(redisBLPop("rc_out"))
++ }
+[1] "Inside Loop"
+$rc_out
+[1] "kentul"
+
+[1] "Inside Loop"
+[1] "interrupt: \n"
+Error in .redisError("Interrupted communincation with Redis", e) : 
+  Interrupted communincation with Redis
+Calls: print ... tryCatchList -> tryCatchOne -> <Anonymous> -> .burn -> .redisError
+Execution halted
